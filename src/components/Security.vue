@@ -1,33 +1,206 @@
 
 
 <template>
-  <div class="container">
-    <h3>Users:</h3>
 
-  
-<div id="accordion" class="accordion">
-   
-        <div v-for="(item, index) in device_alert_list" v-bind:key="item.id" style="background:#f3f3f3; padding:10px;margin-bottom:10px; border:5px solid #fff">
-                <button data-toggle="collapse" :data-target="'#collapse'+index" aria-expanded="true" aria-controls="">
-                    <span>{{item.description}}</span>
-                </button>
-               
-                <div  :id="'collapse'+index" class="row collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="col-2" v-for="alert in item.alerts" v-bind:key="alert.alert_count" style="overflow-wrap: break-word; background-color: pink;">
-                        <hr>
-                        <!-- <span>Alert count: {{alert.alert_count}}<br></span> -->
-                        <span>DST-HOST: {{alert.dst_host}}<br><br></span>
-                        <span>KEY: {{alert.key}}<br><br></span>
-                        <span>SRC-HOST: {{alert.src_host}}<br><br></span>
-                        <span>Description: {{alert.description}}<br><br></span>
-                        <span>Created: {{alert.created}}<br><br></span>
-                        <span>Age: {{alert.age}}<br><br></span>
+<div id="wrapper">
+
+        <!-- Sidebar -->
+        
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">3+</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Alerts Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-warning">
+                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        Spending Alert: We've noticed unusually high spending for your account.
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            </div>
+                        </li>
+
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid" >
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Cards</h1>
+                    </div>
+
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4" >
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                ddd</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        
+
+                        <div class="col-xl-3 col-md-6 mb-4" v-for="(item, index) in device_alert_list" v-bind:key="item.id">
+
+                            
+
+                            <!-- Collapsable Card Example -->
+                            <div class="card shadow mb-4" >
+                                <!-- Card Header - Accordion -->
+                                <a href="#"  :data-target="'#collapse'+index" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                                    <h6 class="m-0 font-weight-bold text-primary">{{item.description}}</h6>
+                                </a>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse" :id="'collapse'+index" style="">
+                                    <div class="row">
+                                        <div class="card-body col-4" v-for="alert in item.alerts" v-bind:key="alert.alert_count" >
+                                            <span>DST-HOST: {{alert.dst_host}}<br><br></span>
+                                            <span>KEY: {{alert.key}}<br><br></span>
+                                            <span>SRC-HOST: {{alert.src_host}}<br><br></span>
+                                            <span>Description: {{alert.description}}<br><br></span>
+                                            <span>Created: {{alert.created}}<br><br></span>
+                                            <span>Age: {{alert.age}}<br><br></span>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright © Your Website 2020</span>
                     </div>
                 </div>
+            </footer>
+            <!-- End of Footer -->
+
         </div>
-    
-  </div>
-  </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+
+
+
+
+  
 </template>
 
 <script>
@@ -37,6 +210,7 @@
     // Import Bootstrap an BootstrapVue CSS files 
     import 'bootstrap/dist/css/bootstrap.css'
     import 'bootstrap/dist/js/bootstrap.min.js'
+
 
     // Make BootstrapVue available throughout your project
     Vue.use(BootstrapVue)

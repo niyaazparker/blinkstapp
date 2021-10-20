@@ -1,5 +1,6 @@
 module.exports = {
   css: {
+    
     loaderOptions: {
       // pass options to sass-loader
       // @/ is an alias to src/
@@ -7,7 +8,7 @@ module.exports = {
       // Note: this option is named as "prependData" in sass-loader v8
       sass: { 
         additionalData: `
-          @import "@/assets/sass/shared.scss";
+          @import "@/assets/sass/_shared.scss";
         `
       }
      

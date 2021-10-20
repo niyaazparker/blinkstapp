@@ -17,6 +17,8 @@ export default {
 }
 </script>
 <style lang="scss">
-
+#accordion {
+  background: map-get($colors, primary );
+}
 </style>
 
