@@ -146,33 +146,23 @@
 
                         
 
-                        <div class="col-xl-3 col-md-6 mb-4" v-for="(item, index) in device_alert_list" v-bind:key="item.id">
-
-                            
-
-                            <!-- Collapsable Card Example -->
-                            <div class="card shadow mb-4" >
-                                <!-- Card Header - Accordion -->
-                                <a href="#"  :data-target="'#collapse'+index" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                        <div class="col-xl-3 col-md-6 mb-4" v-for="item in device_alert_list" v-bind:key="item.id" v-on:click="isHidden = !isHidden">
+                                <a href="#"  class="d-block card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">{{item.description}}</h6>
                                 </a>
-                                <!-- Card Content - Collapse -->
-                                <div class="collapse" :id="'collapse'+index" style="">
-                                    <div class="row">
-                                        <div class="card-body col-4" v-for="alert in item.alerts" v-bind:key="alert.alert_count" >
-                                            <span>DST-HOST: {{alert.dst_host}}<br><br></span>
-                                            <span>KEY: {{alert.key}}<br><br></span>
-                                            <span>SRC-HOST: {{alert.src_host}}<br><br></span>
-                                            <span>Description: {{alert.description}}<br><br></span>
-                                            <span>Created: {{alert.created}}<br><br></span>
-                                            <span>Age: {{alert.age}}<br><br></span>
-                                        </div>
-                                    </div>
-                                   
+                            <div class="container" v-if="!isHidden">
+                                <div v-for="alert in item.alerts" v-bind:key="alert.alert_count" >
+                                    <span>DST-HOST: {{alert.dst_host}}<br><br></span>
+                                    <span>KEY: {{alert.key}}<br><br></span>
+                                    <span>SRC-HOST: {{alert.src_host}}<br><br></span>
+                                    <span>Description: {{alert.description}}<br><br></span>
+                                    <span>Created: {{alert.created}}<br><br></span>
+                                    <span>Age: {{alert.age}}<br><br></span>
                                 </div>
-                            </div>
-
+                             </div>
                         </div>
+
+                       
 
                     </div>
 
@@ -225,6 +215,7 @@
   export default {
         name: 'Incidents',
         data() {
+             
             Vue.axios.get('https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json')
                 .then((resp) => {
                     this.alertslist=resp.data.alerts;
@@ -271,8 +262,10 @@
                 alertslist: this.alertlist,
                 devicelist: this.devicelist,
                 device_alert_list: this.device_alert_list,
-                
+                 isHidden: true
             };
+             
         },
+        
     }
 </script>
