@@ -146,11 +146,11 @@
 
                         
 
-                        <div class="col-xl-3 col-md-6 mb-4" v-for="item in device_alert_list" v-bind:key="item.id" v-on:click="isHidden = !isHidden">
-                                <a href="#"  class="d-block card-header py-3">
+                        <div class="col-xl-3 col-md-6 mb-4" v-for="item in device_alert_list" v-bind:key="item.id"  >
+                                <a href="#"  class="d-block card-header py-3"  v-on:click="isHidden = !isHidden">
                                     <h6 class="m-0 font-weight-bold text-primary">{{item.description}}</h6>
                                 </a>
-                            <div class="container" v-if="!isHidden">
+                            <div v-if="!isHidden">
                                 <div v-for="alert in item.alerts" v-bind:key="alert.alert_count" >
                                     <span>DST-HOST: {{alert.dst_host}}<br><br></span>
                                     <span>KEY: {{alert.key}}<br><br></span>
@@ -262,10 +262,12 @@
                 alertslist: this.alertlist,
                 devicelist: this.devicelist,
                 device_alert_list: this.device_alert_list,
-                 isHidden: true
+                isHidden: false
             };
+            
              
         },
+       
         
     }
 </script>
