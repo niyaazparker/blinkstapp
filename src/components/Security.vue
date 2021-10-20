@@ -98,7 +98,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        <div class="small text-gray-500">December 2, 2019f</div>
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a>
