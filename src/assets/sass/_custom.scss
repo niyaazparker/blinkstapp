@@ -1,0 +1,32 @@
+.device_link {
+    color: rgba(255,255,255,.8);
+    text-decoration:none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1rem 1rem 1rem 0;
+    width: 100%;
+    font-size: 14px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between; 
+    &:hover {
+      color: #fff;
+    }
+    
+    }
+    .sidebar-brand {
+        font-size: 1rem;
+        font-weight: 400;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: .05rem;
+        color: #fff;
+        width: 16%;
+      }
+      .sidebar-brand-icon i {
+        font-size: 2rem;
+      }
+      .sidebar-heading {
+        color: rgba(255,255,255,.4);
+      }

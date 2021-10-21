@@ -17,8 +17,7 @@ export default {
 }
 </script>
 <style lang="scss">
-#accordion {
-  background: map-get($colors, primary );
-}
+@import "assets/sass/_shared.scss";
+@import "assets/sass/_custom.scss";
 </style>
 
