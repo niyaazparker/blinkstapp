@@ -32,7 +32,7 @@
                                         <a href="#" class="device_link" @click='show = item.node_id'>
                                             {{item.description}}
                                             <i class="fa fa-chevron-right" aria-hidden="true"></i>
-
+                                    
                                         </a>
                                         <hr class="sidebar-divider my-0">
                                     </div>
@@ -46,7 +46,7 @@
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" v-model="searchbox" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fa fa-search fa-sm"></i>
@@ -163,7 +163,8 @@
 
 
                                         <div class="row mx-1">
-                                         <div class="card mb-4 col-lg-4 col-md-6 col-sm-6 col-12 px-0 mr-1 border-0 radius-0 background-none" v-for="alert in item.alerts" v-bind:key="alert.alert_count" v-show="show === alert.node_id">
+                                         <div  class="card mb-4 col-lg-4 col-md-6 col-sm-6 col-12 px-0 mr-1 border-0 radius-0 background-none" v-for="alert in item.alerts" v-bind:key="alert.alert_count" v-show="show === alert.node_id" >
+                                             
                                              <div class="px-2">
                                                 <div class="border-radius shadow border-left-primary"> 
                                             <div class="card-header py-3">
@@ -242,6 +243,8 @@
   export default {
         name: 'Incidents',
         data() {
+
+            
              
             Vue.axios.get('https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json')
                 .then((resp) => {
@@ -273,9 +276,13 @@
                                             alert_count: alert_count++,
                                         }
                                 )
+                                   
+                 
                             }
+                           
                         }  
                     }
+                 
 
                     this.device_alert_list = device_alert_list
 
@@ -283,23 +290,27 @@
                      
                 })
 
-                
 
             return { 
                 alertslist: this.alertlist,
                 devicelist: this.devicelist,
                 device_alert_list: this.device_alert_list,
-                show: null
+                show: null,
+                searchbox: "",
+                
             };
             
              
         },
-       show: function(){
-            if(this.activeLink){
-                this.activeLink.classList.remove('highlight');
+
+        computed:{
+            alert_count: function() {
+                    return this.alerts.filter((alert) => {
+                        return alert.description.match(this.searchbox);
+                    })
             }
-            this.activeLink = event.target;
-            this.activeLink.classList.add('highlight');}
+        }
+      
         
     }
 </script>
