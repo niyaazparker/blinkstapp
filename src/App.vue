@@ -1,5 +1,3 @@
-
-
 <template>
   <div id="app">
     <Security/>
@@ -17,7 +15,7 @@ export default {
 }
 </script>
 <style lang="scss">
-@import "assets/sass/_shared.scss";
-@import "assets/sass/_custom.scss";
+    @import "assets/sass/_shared.scss";
+    @import "assets/sass/_custom.scss";
 </style>
 

@@ -1,5 +1,3 @@
-
-
 <template>
 
 <div id="wrapper">
@@ -190,33 +188,13 @@
 
                                 </div>
                                 
-                           
-                            
-                          
-                           
-
                         </div>
-
-                   
-
-
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
-
-            
-
         </div>
-        <!-- End of Content Wrapper -->
+
         <div id="background"></div>
     </div>
-
-
-
-
-  
 </template>
 
 <script>
@@ -251,17 +229,18 @@
                     this.alertslist=resp.data.alerts;
                     this.devicelist=resp.data.device_list;
 
-                    // Not sure how to call functions that have been defined outside of axios call here.
                     let device_alert_list = this.devicelist
                     let alerts_list = this.alertslist
 
                     for (let x = 0; x < device_alert_list.length; x++) {
                         device_alert_list[x].alerts = []
                     }
-                    //console.log(alerts_list)
+                    
                     let alert_count = 0
-                    for (let x = 0; x < device_alert_list.length; x++) {
-                        for (let i = 0; i < alerts_list.length; i++) {
+                    let device_alert_list_length = device_alert_list.length; 
+                    let alerts_list_length = alerts_list.length
+                    for (let x = 0; x < device_alert_list_length; x++) {
+                        for (let i = 0; i < alerts_list_length; i++) {
                             if (device_alert_list[x].node_id === alerts_list[i].node_id) {
                                     device_alert_list[x].alerts.push(
                                         {
